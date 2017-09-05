@@ -1,0 +1,56 @@
+# Hands on Exercise 2
+
+#Start
+
+#Setting the working directory
+
+setwd("G:\\THE MICA EPISODE\\2nd YEAR\AMMA\\Hands on Exercises")
+
+#Question 1 Start
+
+#Reading the csv file 
+
+Infant_mortality_rates <- read_csv("G:/THE MICA EPISODE/2nd YEAR/AMMA/Hands on Exercises/Infant mortality rates.csv")
+
+#Removing the last variable 
+
+Infant_mortality_rates$`Flag Codes`<- NULL
+
+View(Infant_mortality_rates)
+
+#Question 1 End 
+
+#Question 2 Start
+
+#Installing required packages
+
+install.packages("rvest")
+library("rvest")
+install.packages("xml2")
+library("xml2")
+
+#Getting data from the web
+
+matches_link="https://en.wikipedia.org/wiki/India%E2%80%93Pakistan_cricket_rivalry"
+matches_file= read_html(matches_link)
+matches_table=html_nodes(matches_file,"table")
+
+#Invoke the 2nd table
+
+matches_table_final<-html_table(matches_table[2], fill= TRUE)
+View(matches_table_final)
+matches_data=as.data.frame(matches_table_final)
+View(matches_data)
+
+#Calculating the total wins
+
+matches_data$total_wins=matches_data$Test+matches_data$ODI+matches_data$T20I
+
+#Calculating the wins by India 
+
+India_wins<-matches_data[3,5]
+View(India_wins)
+
+#Question 2 Ends
+
+#Hands on Exercise 2 Ends
