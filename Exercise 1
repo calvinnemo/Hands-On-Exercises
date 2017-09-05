@@ -1,0 +1,56 @@
+#Hands On Exercise 1 
+
+#Start
+#Installing the required packages
+
+install.packages("data.table")
+install.packages("datasets")
+library("datasets")
+
+setwd("G:\\THE MICA EPISODE\\2nd YEAR\AMMA\\Hands on Exercises")
+
+#Storing the women data in sample_women data frame
+
+sample_women<-data.frame(women)
+
+#Finding the average weight and height of the women in the data frame 
+
+mean.height=mean(women$height)
+mean.weight=mean(women$weight)
+
+#Finding the number of women whose height is greater than average and whose weight is less than the average and storing it in a new data frame
+
+women_df<-subset(women,height>mean.height & weight<mean.weight)
+
+#There are no such women 
+
+#End 
+
+#Creating a date frame of 15 Indian cities and their population size
+
+# Start
+
+#Installing required packages
+
+install.packages("rvest")
+library("rvest")
+install.packages("xml2")
+library("xml2")
+
+#Getting data from the web
+
+city_link="http://www.worldatlas.com/articles/the-biggest-cities-in-india.html"
+city_file= read_html(city_link)
+city_table=html_nodes(city_file,"table")
+
+#Creating the data frame
+
+city_table_final<-html_table(city_table,fill=TRUE)
+View(city_table_final)
+city_data=as.data.frame(city_table_final)
+view(city_data)
+
+#End
+
+#End of Hands on Exercise 1
+
